@@ -1,0 +1,49 @@
+﻿@model VacationManagment.ViewModel.UserViewModel
+
+@{
+    ViewData["Title"] = "Assign Roles";
+    var allRoles = ViewBag.Roles as List<string>;
+}
+
+<h1>Assign Roles</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AssignRoles">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" readonly />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <h4>Roles</h4>
+            <div class="form-group">
+                <ul class="list-group">
+                    @foreach (var role in allRoles)
+                    {
+                        <li class="ml-5">
+                            <input id="@(role)" name="Roles" type="checkbox" value="@(role)" @(Model.Roles.Any(x => x == role) ? "checked" : "") class="form-check-input me-1" />
+                            @(role)
+                        </li>
+                    }
+                </ul>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

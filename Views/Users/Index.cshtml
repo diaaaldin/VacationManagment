@@ -1,0 +1,42 @@
+﻿@model IEnumerable<VacationManagment.ViewModel.UserViewModel>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>Users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var role in item.Roles)
+                        {
+                            <li>@(role)</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <a asp-action="AssignRoles" asp-route-id="@item.Id">Assign Roles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

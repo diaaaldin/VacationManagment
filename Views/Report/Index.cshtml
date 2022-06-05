@@ -1,0 +1,64 @@
+﻿@model IEnumerable<VacationManagment.ViewModel.EmployeesReportViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Reports</h1>
+
+
+<form class="input-group mb-3 col-md-6">
+<select class="form-control" name="id" asp-items="ViewBag.Employee" ></select>
+<input class="btn btn-primary" type="submit" value="Search" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VacationBalance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalVacation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>  
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.FirstOrDefault().EmpId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.FirstOrDefault().EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.FirstOrDefault().VacationBalance)
+            </td>
+@*            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => Model.FirstOrDefault().TotalVacation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem =>Model.FirstOrDefault().Total)
+            </td>            
+        </tr>
+
+    </tbody>
+</table>
